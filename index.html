@@ -6,659 +6,392 @@
   <title>Doll House</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#4A0D0D;
-      --bg-dark:#2f0606;
-      --card:#ffffff;
-      --soft:#f8f3f3;
-      --gold:#d4af37;
-      --text:#1f1f1f;
-      --muted:#666;
-      --line:#eadede;
-      --shadow:0 16px 40px rgba(0,0,0,.12);
-      --radius:18px;
-    }
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      font-family:"Poppins",sans-serif;
-      background:#faf8f8;
-      color:var(--text);
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(74,13,13,.96);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.08);
-    }
-
-    .nav-wrap{
-      max-width:1280px;
-      margin:0 auto;
-      padding:16px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .logo{
-      font-family:"Playfair Display",serif;
-      font-size:2rem;
-      color:#fff;
-      letter-spacing:.5px;
-    }
-
-    .logo span{
-      color:var(--gold);
-    }
-
-    nav{
-      display:flex;
-      gap:20px;
-      flex-wrap:wrap;
-    }
-
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:500;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    nav a:hover{
-      color:#f3d77b;
-    }
-
-    .hero{
-      background:
-        linear-gradient(rgba(74,13,13,.62), rgba(74,13,13,.62)),
-        url("https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      min-height:72vh;
-      display:flex;
-      align-items:center;
-    }
-
-    .hero-inner{
-      max-width:1280px;
-      margin:0 auto;
-      width:100%;
-      padding:60px 24px;
-      color:#fff;
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:30px;
-      align-items:center;
-    }
-
-    .hero h1{
-      font-family:"Playfair Display",serif;
-      font-size:clamp(3rem,7vw,5.8rem);
-      line-height:.95;
-      margin-bottom:18px;
-    }
-
-    .hero p{
-      max-width:620px;
-      font-size:1.08rem;
-      color:#f6eded;
-      margin-bottom:28px;
-    }
-
-    .hero-panel{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:24px;
-      padding:24px;
-      backdrop-filter:blur(8px);
-      box-shadow:0 18px 50px rgba(0,0,0,.18);
-    }
-
-    .hero-panel h3{
-      font-family:"Playfair Display",serif;
-      font-size:1.6rem;
-      margin-bottom:12px;
-      color:#fff;
-    }
-
-    .hero-panel p{
-      margin:0 0 18px;
-      color:#f0dfdf;
-      font-size:.98rem;
-    }
-
-    .btn{
-      border:none;
-      border-radius:999px;
-      padding:13px 24px;
-      font-weight:600;
-      cursor:pointer;
-      transition:.2s;
-      font-family:inherit;
-    }
-
-    .btn-primary{
-      background:#fff;
-      color:var(--bg);
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-1px);
-      background:#f7ecec;
-    }
-
-    .btn-dark{
-      background:var(--bg);
-      color:#fff;
-    }
-
-    .btn-dark:hover{
-      background:#5d1414;
-    }
-
-    .section{
-      max-width:1280px;
-      margin:0 auto;
-      padding:70px 24px;
-    }
-
-    .section-head{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:20px;
-      margin-bottom:28px;
-      flex-wrap:wrap;
-    }
-
-    .section-head h2{
-      font-family:"Playfair Display",serif;
-      font-size:2.4rem;
-      color:var(--bg);
-    }
-
-    .section-head p{
-      color:var(--muted);
-      max-width:650px;
-    }
-
-    .category-bar{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom:22px;
-    }
-
-    .filter-btn{
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--bg);
-      padding:10px 16px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:600;
-      transition:.2s;
-    }
-
-    .filter-btn:hover,
-    .filter-btn.active{
-      background:var(--bg);
-      color:#fff;
-      border-color:var(--bg);
-    }
-
-    .catalog-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:22px;
-    }
-
-    .product-card{
-      background:#fff;
-      border:1px solid #eee;
-      border-radius:22px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-      transition:.25s;
-      cursor:pointer;
-    }
-
-    .product-card:hover{
-      transform:translateY(-5px);
-    }
-
-    .product-image-wrap{
-      position:relative;
-      overflow:hidden;
-      background:#f4efef;
-    }
-
-    .product-card img{
-      width:100%;
-      height:360px;
-      object-fit:cover;
-      display:block;
-      transition:transform .45s ease;
-    }
-
-    .product-card:hover img{
-      transform:scale(1.04);
-    }
-
-    .tag{
-      position:absolute;
-      top:14px;
-      left:14px;
-      background:rgba(74,13,13,.92);
-      color:#fff;
-      padding:7px 11px;
-      border-radius:999px;
-      font-size:.82rem;
-      font-weight:600;
-    }
-
-    .product-body{
-      padding:16px;
-    }
-
-    .product-title{
-      font-weight:600;
-      font-size:1rem;
-      margin-bottom:6px;
-      color:var(--text);
-    }
-
-    .product-price{
-      color:var(--bg);
-      font-weight:700;
-      margin-bottom:10px;
-    }
-
-    .sizes{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .size-pill{
-      background:var(--soft);
-      color:var(--bg);
-      border:1px solid #efdfdf;
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.85rem;
-      font-weight:600;
-    }
-
-    .services-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:20px;
-    }
-
-    .service-card{
-      background:#fff;
-      border:1px solid #eee;
-      border-radius:20px;
-      padding:22px;
-      box-shadow:var(--shadow);
-      transition:.25s;
-      cursor:pointer;
-    }
-
-    .service-card:hover{
-      transform:translateY(-4px);
-    }
-
-    .service-icon{
-      font-size:1.6rem;
-      margin-bottom:10px;
-    }
-
-    .service-card h3{
-      color:var(--bg);
-      margin-bottom:8px;
-      font-size:1.15rem;
-    }
-
-    .service-card p{
-      color:var(--muted);
-      font-size:.95rem;
-    }
-
-    footer{
-      background:var(--bg);
-      color:#f3e8e8;
-      text-align:center;
-      padding:34px 20px;
-      margin-top:30px;
-    }
-
-    .modal{
-      position:fixed;
-      inset:0;
-      display:none;
-      align-items:center;
-      justify-content:center;
-      background:rgba(0,0,0,.62);
-      padding:22px;
-      z-index:3000;
-    }
-
-    .modal.open{
-      display:flex;
-    }
-
-    .modal-box{
-      width:min(1100px,100%);
-      max-height:90vh;
-      overflow:auto;
-      background:#fff;
-      border-radius:24px;
-      box-shadow:0 30px 80px rgba(0,0,0,.25);
-      padding:28px;
-      position:relative;
-      animation:pop .22s ease;
-    }
-
-    .close{
-      position:absolute;
-      top:12px;
-      right:18px;
-      font-size:2rem;
-      cursor:pointer;
-      color:#777;
-      line-height:1;
-    }
-
-    .close:hover{
-      color:#000;
-    }
-
-    .modal-box h2{
-      font-family:"Playfair Display",serif;
-      color:var(--bg);
-      font-size:2rem;
-      margin-bottom:18px;
-      padding-right:34px;
-    }
-
-    .detail-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:26px;
-    }
-
-    .detail-grid img{
-      width:100%;
-      height:540px;
-      object-fit:cover;
-      border-radius:20px;
-      background:#f3eded;
-    }
-
-    .detail-panel{
-      background:#fffafa;
-      border:1px solid var(--line);
-      border-radius:20px;
-      padding:20px;
-    }
-
-    .detail-panel p{
-      margin-bottom:12px;
-    }
-
-    .label{
-      font-weight:700;
-      color:var(--bg);
-    }
-
-    .field{
-      margin-bottom:12px;
-    }
-
-    .field label{
-      display:block;
-      margin-bottom:6px;
-      color:#333;
-      font-weight:500;
-      font-size:.95rem;
-    }
-
-    input, textarea{
-      width:100%;
-      border:1px solid #d8d8d8;
-      border-radius:12px;
-      padding:12px 14px;
-      font-family:inherit;
-      font-size:1rem;
-      outline:none;
-    }
-
-    input:focus, textarea:focus{
-      border-color:var(--bg);
-      box-shadow:0 0 0 4px rgba(74,13,13,.08);
-    }
-
-    textarea{
-      min-height:90px;
-      resize:vertical;
-    }
-
-    .action-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
-      gap:10px;
-      margin-top:12px;
-    }
-
-    .select-btn{
-      border:none;
-      background:#f3ebeb;
-      color:var(--bg);
-      border-radius:12px;
-      padding:11px 10px;
-      cursor:pointer;
-      font-weight:600;
-      transition:.2s;
-    }
-
-    .select-btn:hover,
-    .select-btn.active{
-      background:var(--bg);
-      color:#fff;
-    }
-
-    .master-list{
-      display:grid;
-      gap:14px;
-    }
-
-    .master-card{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:#fffafa;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    .master-card:hover{
-      transform:translateY(-2px);
-      background:#fff5f5;
-    }
-
-    .master-card strong{
-      color:var(--bg);
-      display:block;
-      margin-bottom:6px;
-    }
-
-    .success{
-      margin-top:14px;
-      background:#eaf8eb;
-      color:#17692d;
-      border:1px solid #b8dfbe;
-      padding:14px;
-      border-radius:14px;
-      display:none;
-      font-weight:500;
-    }
-
-    .muted{
-      color:var(--muted);
-      font-size:.94rem;
-    }
-
-    .back-btn{
-      background:none;
-      border:none;
-      color:var(--bg);
-      font-weight:700;
-      cursor:pointer;
-      margin-bottom:12px;
-      padding:0;
-    }
-
-    @keyframes pop{
-      from{opacity:0; transform:translateY(10px) scale(.98)}
-      to{opacity:1; transform:translateY(0) scale(1)}
-    }
-
-    @media (max-width: 900px){
-      .hero-inner,
-      .detail-grid{
-        grid-template-columns:1fr;
-      }
-
-      .detail-grid img{
-        height:380px;
-      }
-    }
-
-    @media (max-width: 640px){
-      .nav-wrap{
-        padding:14px 16px;
-      }
-
-      .section{
-        padding:55px 16px;
-      }
-
-      .hero-inner{
-        padding:40px 16px;
-      }
-
-      .product-card img{
-        height:300px;
-      }
-
-      .modal-box{
-        padding:22px 16px;
-      }
-
-      .detail-grid img{
-        height:300px;
-      }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header>
-    <div class="nav-wrap">
+  <header class="site-header">
+    <div class="container nav-wrap">
       <div class="logo">Doll <span>House</span></div>
-      <nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Atidaryti meniu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav">
         <a href="#top">Pagrindinis</a>
-        <a href="#sukneles">Suknelės</a>
-        <a href="#paslaugos">Paslaugos</a>
-        <a href="#kontaktai">Kontaktai</a>
+        <a href="#featured">Populiariausios</a>
+        <a href="#catalog">Suknelės</a>
+        <a href="#services">Paslaugos</a>
+        <a href="#instagram">Galerija</a>
+        <a href="#about">Apie mus</a>
+        <a href="#faq">DUK</a>
+        <a href="#contacts">Kontaktai</a>
+        <a href="#admin">Rezervacijos</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero" id="top">
-    <div class="hero-inner">
-      <div>
-        <h1>Prabangi nuoma ir grožio ritualai</h1>
-        <p>Panašus boutique katalogo stilius, bet pritaikytas tavo Doll House svetainei: raudoni tonai, suknelių nuoma, grožio paslaugos ir aiški rezervacija.</p>
-        <button class="btn btn-primary" onclick="document.getElementById('sukneles').scrollIntoView({behavior:'smooth'})">Žiūrėti katalogą</button>
+  <main>
+    <section class="hero hero-premium" id="top">
+      <div class="hero-overlay"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-badge">Luxury beauty & dress boutique</div>
+          <h1>Prabanga, kurią <span>apsivelki</span> ir <span>jauti</span></h1>
+          <p>
+            Doll House – premium grožio salonas ir suknelių nuoma vienoje vietoje.
+            Sukūrėme svetainę, kuri atrodo kaip tikras boutique salonas: elegantiška, švari ir prabangi.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-light" onclick="scrollToSection('catalog')">Peržiūrėti sukneles</button>
+            <button class="btn btn-outline-light" onclick="scrollToSection('services')">Rinktis paslaugą</button>
+          </div>
+
+          <div class="hero-features">
+            <div class="hero-feature">
+              <strong>50+</strong>
+              <span>Suknelių kataloge</span>
+            </div>
+            <div class="hero-feature">
+              <strong>6</strong>
+              <span>Grožio paslaugos</span>
+            </div>
+            <div class="hero-feature">
+              <strong>Premium</strong>
+              <span>Luxury boutique stilius</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-showcase">
+          <div class="hero-showcase-card">
+            <div class="hero-showcase-top">Nauja kolekcija</div>
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1000&q=80" alt="Suknelė">
+            <div class="hero-showcase-body">
+              <h3>Vakarinė elegancija</h3>
+              <p>Modernios, moteriškos ir išraiškingos suknelės ypatingoms progoms.</p>
+              <button class="btn btn-dark" onclick="scrollToSection('featured')">Žiūrėti top modelius</button>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="hero-panel">
-        <h3>Doll House</h3>
-        <p>Suknelių nuoma, manikiūras, pedikiūras, makiažas, plaukai, blakstienos ir antakiai vienoje vietoje.</p>
-        <button class="btn btn-dark" onclick="document.getElementById('paslaugos').scrollIntoView({behavior:'smooth'})">Rinktis paslaugą</button>
+    <section class="section featured-section" id="featured">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Best sellers</div>
+            <h2>Populiariausios suknelės</h2>
+            <p>Klienčių dažniausiai pasirenkami modeliai. Tvarkinga, moderni ir aiški top suknelių zona.</p>
+          </div>
+        </div>
+
+        <div class="featured-grid" id="featuredGrid"></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="section" id="sukneles">
-    <div class="section-head">
-      <div>
-        <h2>Suknelių katalogas</h2>
-        <p>Švaresnis boutique tipo atvaizdavimas: aiškios kategorijos, didelės nuotraukos, kainos ir dydžiai.</p>
+    <section class="section catalog-section" id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Dress catalog</div>
+            <h2>Suknelių katalogas</h2>
+            <p>Filtruok pagal kategoriją, dydį ir kainą. Paspaudus ant suknelės atsidaro pilnas boutique tipo langas.</p>
+          </div>
+        </div>
+
+        <div class="category-bar" id="dressFilters"></div>
+
+        <div class="catalog-tools">
+          <div class="tool-box">
+            <label for="sortSelect">Rūšiavimas</label>
+            <select id="sortSelect">
+              <option value="default">Pagal numatytą</option>
+              <option value="price-asc">Kaina: nuo mažiausios</option>
+              <option value="price-desc">Kaina: nuo didžiausios</option>
+              <option value="name-asc">Pavadinimas: A–Ž</option>
+            </select>
+          </div>
+
+          <div class="tool-box">
+            <label for="sizeFilter">Dydis</label>
+            <select id="sizeFilter">
+              <option value="all">Visi dydžiai</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="catalog-grid" id="dressCatalog"></div>
       </div>
-    </div>
+    </section>
 
-    <div class="category-bar" id="dressFilters"></div>
-    <div class="catalog-grid" id="dressCatalog"></div>
-  </section>
+    <section class="section services-section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Beauty services</div>
+            <h2>Grožio paslaugos</h2>
+            <p>Pasirink paslaugą, meistrę, dieną ir laiką. Išlaikytas premium salono pojūtis.</p>
+          </div>
+        </div>
 
-  <section class="section" id="paslaugos">
-    <div class="section-head">
-      <div>
-        <h2>Grožio paslaugos</h2>
-        <p>Pasirink paslaugą, meistrę, datą ir laiką. Viską palikau tavo stilistikai, tik išdėstymas modernesnis ir švaresnis.</p>
+        <div class="services-grid" id="servicesGrid"></div>
       </div>
-    </div>
+    </section>
 
-    <div class="services-grid" id="servicesGrid"></div>
-  </section>
+    <section class="section instagram-section" id="instagram">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Visual gallery</div>
+            <h2>Instagram galerija</h2>
+            <p>Galerija darbams, salonui, klientėms ir kolekcijoms. Paspaudus atsidaro lightbox peržiūra.</p>
+          </div>
+        </div>
 
-  <footer id="kontaktai">
+        <div class="instagram-grid">
+          <button class="insta-card" data-lightbox="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80" alt="">
+          </button>
+          <button class="insta-card" data-lightbox="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=900&q=80" alt="">
+          </button>
+          <button class="insta-card" data-lightbox="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=900&q=80" alt="">
+          </button>
+          <button class="insta-card" data-lightbox="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="">
+          </button>
+          <button class="insta-card" data-lightbox="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="">
+          </button>
+          <button class="insta-card" data-lightbox="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80" alt="">
+          </button>
+        </div>
+
+        <div class="instagram-cta">
+          <div>
+            <strong>@dollhouse.lt</strong>
+            <p>Čia vėliau galėsi įdėti tikrą Instagram nuorodą.</p>
+          </div>
+          <a href="#" class="btn btn-dark">Sekti Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">About boutique</div>
+            <h2>Apie mus</h2>
+            <p>Doll House – vieta, kur susijungia suknelių nuoma ir grožio paslaugos ypatingoms progoms.</p>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <h3>Mūsų filosofija</h3>
+            <p>
+              Kuriame prabangią, estetišką ir labai moterišką patirtį. Pas mus klientė gali pasiruošti visam įvaizdžiui vienoje vietoje:
+              nuo suknelės ir plaukų iki makiažo, nagų, blakstienų bei paskutinių detalių.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>Ką rasite pas mus</h3>
+            <p>
+              Proginės, vakarinės, kokteilinės, vestuvinės ir išleistuvių suknelės, taip pat manikiūras, pedikiūras, makiažas,
+              plaukų paslaugos, blakstienos ir antakiai.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Questions & answers</div>
+            <h2>Dažniausiai užduodami klausimai</h2>
+            <p>Aiški DUK sekcija padeda svetainei atrodyti pilnai užbaigtai ir profesionaliai.</p>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Kaip vyksta suknelės rezervacija?</summary>
+            <p>Pasirenki suknelę, nuomos laikotarpį, dieną, dydį ir užpildai kontaktus. Rezervacija išsisaugo naršyklėje.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Ar galima pasimatuoti suknelę prieš rezervaciją?</summary>
+            <p>Taip, prie suknelės yra matavimo opcija. Vėliau galėsi prijungti tikrą registracijos logiką šiai paslaugai.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Kaip vyksta grožio paslaugų registracija?</summary>
+            <p>Pasirenki paslaugą, meistrę, laisvą dieną ir laiką, tada užpildai registracijos formą.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Ar rezervacijos jau siunčiamos į el. paštą?</summary>
+            <p>Kol kas ne. Šioje versijoje jos saugomos naršyklėje per localStorage. Vėliau galima prijungti EmailJS arba serverį.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contacts-section" id="contacts">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Contact us</div>
+            <h2>Kontaktai</h2>
+            <p>Tvarkinga kontaktų zona ir papildoma forma, kad puslapis atrodytų kaip pilnai užbaigtas premium projektas.</p>
+          </div>
+        </div>
+
+        <div class="contacts-grid">
+          <div class="contact-card">
+            <h3>Doll House kontaktai</h3>
+            <div class="contact-list">
+              <div class="contact-item">📍 Vilnius, Lietuva</div>
+              <div class="contact-item">📞 +370 600 00000</div>
+              <div class="contact-item">✉️ info@dollhouse.lt</div>
+              <div class="contact-item">🕒 I–VI 09:00–19:00</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <h3>Greita užklausa</h3>
+            <form id="contactForm" class="contact-form">
+              <div class="field">
+                <label for="contactName">Vardas</label>
+                <input type="text" id="contactName" placeholder="Įvesk vardą">
+              </div>
+
+              <div class="field">
+                <label for="contactEmail">El. paštas</label>
+                <input type="email" id="contactEmail" placeholder="Įvesk el. paštą">
+              </div>
+
+              <div class="field">
+                <label for="contactMessage">Žinutė</label>
+                <textarea id="contactMessage" placeholder="Įrašyk žinutę"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-dark full-width">Siųsti užklausą</button>
+              <div id="contactSuccess" class="success"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section admin-section" id="admin">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Admin panel</div>
+            <h2>Rezervacijų panelė</h2>
+            <p>Čia rodomos visos išsaugotos rezervacijos šiame įrenginyje. Vėliau bus galima pakeisti į tikrą admin sistemą.</p>
+          </div>
+        </div>
+
+        <div class="admin-tools">
+          <button class="filter-btn active" data-admin-filter="all">Visos</button>
+          <button class="filter-btn" data-admin-filter="dress">Suknelės</button>
+          <button class="filter-btn" data-admin-filter="service">Paslaugos</button>
+          <button class="filter-btn" data-admin-filter="contact">Užklausos</button>
+          <button class="btn btn-danger" id="clearReservationsBtn">Išvalyti viską</button>
+        </div>
+
+        <div class="admin-panel">
+          <div class="admin-table-head">
+            <span>Tipas</span>
+            <span>Pavadinimas</span>
+            <span>Informacija</span>
+            <span>Kontaktas</span>
+          </div>
+          <div id="adminReservations"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
     Doll House © 2026 – Visos teisės saugomos
   </footer>
 
-  <!-- Suknelės detalė -->
+  <!-- DRESS MODAL -->
   <div id="dressModal" class="modal">
-    <div class="modal-box">
+    <div class="modal-box dress-product-modal">
       <span class="close" onclick="closeModal('dressModal')">×</span>
-      <div class="detail-grid">
-        <img id="dressModalImg" src="" alt="Suknelė">
-        <div class="detail-panel">
-          <h2 id="dressModalTitle">Suknelė</h2>
-          <p><span class="label">Kaina:</span> <span id="dressModalPrice"></span> €</p>
-          <p><span class="label">Galimi dydžiai:</span> <span id="dressModalSizes"></span></p>
 
-          <div class="field">
-            <label for="dressDate">Data</label>
-            <input type="date" id="dressDate">
+      <div class="dress-product-layout">
+        <div class="dress-thumbs" id="dressThumbs"></div>
+
+        <div class="dress-main-image-wrap">
+          <img id="dressModalImg" src="" alt="Suknelė" class="dress-main-image">
+        </div>
+
+        <div class="dress-info-panel">
+          <h2 id="dressModalTitle">Suknelė</h2>
+          <div class="dress-brand" id="dressBrand">DOLL HOUSE COLLECTION</div>
+
+          <div class="dress-price-row">
+            <span class="main-price" id="dressModalPrice"></span>
+            <span class="old-price" id="dressOldPrice"></span>
           </div>
 
-          <button class="btn btn-dark" style="width:100%;" onclick="showDressSizes()">Rodyti laisvus dydžius</button>
+          <div class="price-note" id="dressPriceNote">Bazinis 4 dienų nuomos mokestis</div>
 
-          <div id="dressSizesBox" style="display:none; margin-top:14px;">
-            <p class="label" style="margin-bottom:8px;">Pasirink dydį</p>
+          <div class="product-block">
+            <label for="dressSizeSelect">Pasirinkite dydį</label>
+            <select id="dressSizeSelect"></select>
+          </div>
+
+          <div class="product-block">
+            <div class="product-label">Nuomos laikotarpis</div>
+            <div class="rental-options" id="rentalOptions">
+              <button class="rental-btn active" data-days="4">4 dienos</button>
+              <button class="rental-btn" data-days="8">8 dienos</button>
+              <button class="rental-btn" data-days="16">16 dienų</button>
+              <button class="rental-btn" data-days="28">28 dienos</button>
+            </div>
+          </div>
+
+          <div class="product-block">
+            <div class="product-label">Nesi tikra dėl dydžio ar modelio? Pasimatuok.</div>
+            <button class="tryon-btn" type="button">24 val. matavimas — 6 €</button>
+          </div>
+
+          <div class="product-block">
+            <div class="product-label">Pasirink nuomos dieną</div>
+            <div id="dressCalendar" class="calendar-grid"></div>
+          </div>
+
+          <div class="product-block">
+            <div class="product-label">Laisvi dydžiai pasirinktą dieną</div>
             <div id="dressSizeButtons" class="action-grid"></div>
           </div>
 
-          <div id="dressFormWrap" style="display:none; margin-top:16px;">
+          <div id="dressSelectedSummary" class="selected-summary" style="display:none;"></div>
+
+          <div id="dressFormWrap" style="display:none;">
             <div class="field">
               <label for="dressClientName">Vardas</label>
               <input type="text" id="dressClientName" placeholder="Įvesk vardą">
@@ -671,10 +404,10 @@
 
             <div class="field">
               <label for="dressClientNote">Pastaba</label>
-              <textarea id="dressClientNote" placeholder="Pvz. noriu pasimatuoti vietoje"></textarea>
+              <textarea id="dressClientNote" placeholder="Pvz. noriu pasimatuoti prieš rezervaciją"></textarea>
             </div>
 
-            <button class="btn btn-dark" style="width:100%;" onclick="submitDressBooking()">Patvirtinti rezervaciją</button>
+            <button class="dress-cart-btn" onclick="submitDressBooking()">Rezervuoti</button>
             <div id="dressSuccess" class="success"></div>
           </div>
         </div>
@@ -682,7 +415,7 @@
     </div>
   </div>
 
-  <!-- Paslaugų meistrės -->
+  <!-- SERVICE MASTERS -->
   <div id="serviceMastersModal" class="modal">
     <div class="modal-box">
       <span class="close" onclick="closeModal('serviceMastersModal')">×</span>
@@ -691,7 +424,7 @@
     </div>
   </div>
 
-  <!-- Paslaugos registracija -->
+  <!-- SERVICE BOOKING -->
   <div id="serviceBookingModal" class="modal">
     <div class="modal-box">
       <span class="close" onclick="closeModal('serviceBookingModal')">×</span>
@@ -704,12 +437,10 @@
           <p><span class="label">Kaina:</span> <span id="bookingPrice"></span> €</p>
           <p><span class="label">Trukmė:</span> <span id="bookingDuration"></span></p>
 
-          <div class="field">
-            <label for="serviceDate">Data</label>
-            <input type="date" id="serviceDate">
+          <div class="product-block">
+            <div class="product-label">Pasirink dieną</div>
+            <div id="serviceCalendar" class="calendar-grid"></div>
           </div>
-
-          <button class="btn btn-dark" style="width:100%;" onclick="showServiceTimes()">Rodyti laikus</button>
 
           <div id="serviceTimesWrap" style="display:none; margin-top:14px;">
             <p class="label" style="margin-bottom:8px;">Pasirink laiką</p>
@@ -719,7 +450,7 @@
 
         <div class="detail-panel">
           <h2>Registracija</h2>
-          <p id="serviceHint" class="muted">Pirmiausia pasirink datą ir laiką.</p>
+          <p id="serviceHint" class="muted">Pirmiausia pasirink dieną ir laiką.</p>
 
           <div id="serviceFormWrap" style="display:none;">
             <div class="field">
@@ -737,7 +468,7 @@
               <textarea id="serviceClientNote" placeholder="Papildoma informacija"></textarea>
             </div>
 
-            <button class="btn btn-dark" style="width:100%;" onclick="submitServiceBooking()">Patvirtinti rezervaciją</button>
+            <button class="btn btn-dark full-width" onclick="submitServiceBooking()">Patvirtinti rezervaciją</button>
             <div id="serviceSuccess" class="success"></div>
           </div>
         </div>
@@ -745,418 +476,14 @@
     </div>
   </div>
 
-  <script>
-    const dressCategories = [
-      { key:"all", title:"Visos" },
-      { key:"progines", title:"Proginės" },
-      { key:"isleistuviu", title:"Išleistuvių" },
-      { key:"vakarines", title:"Vakarinės" },
-      { key:"kokteilines", title:"Kokteilinės" },
-      { key:"vestuvines", title:"Vestuvinės" }
-    ];
+  <!-- LIGHTBOX -->
+  <div id="lightboxModal" class="modal">
+    <div class="modal-box lightbox-box">
+      <span class="close" onclick="closeModal('lightboxModal')">×</span>
+      <img id="lightboxImg" src="" alt="Peržiūra" class="lightbox-image">
+    </div>
+  </div>
 
-    const dressImages = {
-      progines: [
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80"
-      ],
-      isleistuviu: [
-        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=80"
-      ],
-      vakarines: [
-        "https://images.unsplash.com/photo-1464863979621-258859e62245?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1495385794356-15371f348c31?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1524253482453-3fed8d2fe12b?auto=format&fit=crop&w=900&q=80"
-      ],
-      kokteilines: [
-        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80"
-      ],
-      vestuvines: [
-        "https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80",
-        "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=900&q=80"
-      ]
-    };
-
-    const sizeSets = [
-      ["XS","S","M"],
-      ["S","M","L"],
-      ["M","L","XL"],
-      ["XS","S","M","L"],
-      ["S","M","L","XL"]
-    ];
-
-    const dresses = [];
-
-    ["progines","isleistuviu","vakarines","kokteilines","vestuvines"].forEach((cat, catIndex) => {
-      for(let i = 1; i <= 10; i++){
-        dresses.push({
-          id: `${cat}-${i}`,
-          category: cat,
-          name: `${dressCategories.find(c => c.key === cat).title} ${i}`,
-          image: dressImages[cat][(i - 1) % dressImages[cat].length],
-          price: 75 + (catIndex * 35) + (i * 6),
-          sizes: sizeSets[(i - 1) % sizeSets.length]
-        });
-      }
-    });
-
-    const services = {
-      manikiuras: {
-        title: "Manikiūras",
-        icon: "💅",
-        desc: "Tvarkingas, elegantiškas ir ilgaamžis rezultatas.",
-        masters: [
-          { name: "Aistė", price: 35, duration: "1 val. 30 min." },
-          { name: "Laura", price: 40, duration: "1 val. 45 min." },
-          { name: "Milda", price: 45, duration: "2 val." }
-        ]
-      },
-      pedikiuras: {
-        title: "Pedikiūras",
-        icon: "🦶",
-        desc: "Pėdų priežiūra ir estetiškas rezultatas.",
-        masters: [
-          { name: "Simona", price: 40, duration: "1 val. 30 min." },
-          { name: "Gabija", price: 45, duration: "2 val." },
-          { name: "Justė", price: 50, duration: "2 val." }
-        ]
-      },
-      makiazas: {
-        title: "Makiažas",
-        icon: "💄",
-        desc: "Dieninis, vakarinis ir proginis makiažas.",
-        masters: [
-          { name: "Eglė", price: 50, duration: "1 val." },
-          { name: "Monika", price: 55, duration: "1 val. 15 min." },
-          { name: "Karolina", price: 60, duration: "1 val. 20 min." }
-        ]
-      },
-      plaukai: {
-        title: "Plaukai",
-        icon: "✂️",
-        desc: "Kirpimai, sušukavimai ir garbanos.",
-        masters: [
-          { name: "Rūta", price: 60, duration: "1 val. 30 min." },
-          { name: "Agnė", price: 70, duration: "2 val." },
-          { name: "Viktorija", price: 80, duration: "2 val. 20 min." }
-        ]
-      },
-      blakstienos: {
-        title: "Blakstienos",
-        icon: "👁",
-        desc: "Priauginimas, laminavimas ir korekcija.",
-        masters: [
-          { name: "Diana", price: 45, duration: "1 val." },
-          { name: "Patricija", price: 50, duration: "1 val. 15 min." },
-          { name: "Rasa", price: 55, duration: "1 val. 30 min." }
-        ]
-      },
-      antakiai: {
-        title: "Antakiai",
-        icon: "✨",
-        desc: "Korekcija, dažymas ir laminavimas.",
-        masters: [
-          { name: "Vaida", price: 20, duration: "30 min." },
-          { name: "Aistė", price: 25, duration: "45 min." },
-          { name: "Sandra", price: 30, duration: "50 min." }
-        ]
-      }
-    };
-
-    const dressAvailability = {
-      "2026-03-15": ["XS","S","M"],
-      "2026-03-16": ["S","M","L"],
-      "2026-03-17": ["M","L","XL"],
-      "2026-03-18": ["XS","S"],
-      "2026-03-19": ["L","XL"]
-    };
-
-    const serviceTimes = {
-      "2026-03-15": ["10:00","11:30","14:00","16:30"],
-      "2026-03-16": ["09:30","12:00","15:00"],
-      "2026-03-17": ["10:30","13:30","17:00"],
-      "2026-03-18": ["11:00","14:30","18:00"],
-      "2026-03-19": ["09:00","12:30","16:00"]
-    };
-
-    let activeCategory = "all";
-    let currentDress = null;
-    let selectedDressSize = null;
-
-    let currentServiceKey = null;
-    let currentMaster = null;
-    let selectedServiceTime = null;
-
-    function openModal(id){
-      document.getElementById(id).classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeModal(id){
-      document.getElementById(id).classList.remove("open");
-      document.body.style.overflow = "auto";
-    }
-
-    window.addEventListener("click", function(e){
-      if(e.target.classList.contains("modal")){
-        e.target.classList.remove("open");
-        document.body.style.overflow = "auto";
-      }
-    });
-
-    function renderDressFilters(){
-      const wrap = document.getElementById("dressFilters");
-      wrap.innerHTML = "";
-
-      dressCategories.forEach(cat => {
-        const btn = document.createElement("button");
-        btn.className = "filter-btn" + (activeCategory === cat.key ? " active" : "");
-        btn.innerText = cat.title;
-        btn.onclick = () => {
-          activeCategory = cat.key;
-          renderDressFilters();
-          renderDressCatalog();
-        };
-        wrap.appendChild(btn);
-      });
-    }
-
-    function renderDressCatalog(){
-      const grid = document.getElementById("dressCatalog");
-      grid.innerHTML = "";
-
-      const filtered = activeCategory === "all"
-        ? dresses
-        : dresses.filter(d => d.category === activeCategory);
-
-      filtered.forEach(dress => {
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.onclick = () => openDressDetail(dress);
-
-        card.innerHTML = `
-          <div class="product-image-wrap">
-            <img src="${dress.image}" alt="${dress.name}">
-            <div class="tag">${dressCategories.find(c => c.key === dress.category).title}</div>
-          </div>
-          <div class="product-body">
-            <div class="product-title">${dress.name}</div>
-            <div class="product-price">${dress.price} €</div>
-            <div class="sizes">
-              ${dress.sizes.map(size => `<span class="size-pill">${size}</span>`).join("")}
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function openDressDetail(dress){
-      currentDress = dress;
-      selectedDressSize = null;
-
-      document.getElementById("dressModalImg").src = dress.image;
-      document.getElementById("dressModalTitle").innerText = dress.name;
-      document.getElementById("dressModalPrice").innerText = dress.price;
-      document.getElementById("dressModalSizes").innerText = dress.sizes.join(", ");
-      document.getElementById("dressDate").value = "";
-      document.getElementById("dressSizesBox").style.display = "none";
-      document.getElementById("dressFormWrap").style.display = "none";
-      document.getElementById("dressSizeButtons").innerHTML = "";
-      document.getElementById("dressClientName").value = "";
-      document.getElementById("dressClientEmail").value = "";
-      document.getElementById("dressClientNote").value = "";
-      document.getElementById("dressSuccess").style.display = "none";
-
-      openModal("dressModal");
-    }
-
-    function showDressSizes(){
-      const date = document.getElementById("dressDate").value;
-      const wrap = document.getElementById("dressSizesBox");
-      const btnWrap = document.getElementById("dressSizeButtons");
-      wrap.style.display = "block";
-      btnWrap.innerHTML = "";
-      document.getElementById("dressFormWrap").style.display = "none";
-      selectedDressSize = null;
-
-      if(!date){
-        btnWrap.innerHTML = `<div class="muted">Pirmiausia pasirink datą.</div>`;
-        return;
-      }
-
-      const available = dressAvailability[date] || currentDress.sizes.slice(0, 2);
-
-      if(!available.length){
-        btnWrap.innerHTML = `<div class="muted">Tą dieną laisvų dydžių nėra.</div>`;
-        return;
-      }
-
-      available.forEach(size => {
-        const btn = document.createElement("button");
-        btn.className = "select-btn";
-        btn.innerText = size;
-        btn.onclick = () => {
-          selectedDressSize = size;
-          [...btnWrap.querySelectorAll(".select-btn")].forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          document.getElementById("dressFormWrap").style.display = "block";
-        };
-        btnWrap.appendChild(btn);
-      });
-    }
-
-    function submitDressBooking(){
-      const name = document.getElementById("dressClientName").value.trim();
-      const email = document.getElementById("dressClientEmail").value.trim();
-      const date = document.getElementById("dressDate").value;
-      const success = document.getElementById("dressSuccess");
-
-      if(!name || !email || !date || !selectedDressSize){
-        alert("Užpildyk datą, pasirink dydį, vardą ir el. paštą.");
-        return;
-      }
-
-      success.style.display = "block";
-      success.innerText = `Rezervacija priimta: ${currentDress.name}, dydis ${selectedDressSize}, data ${date}. Kontaktas: ${name}, ${email}.`;
-    }
-
-    function renderServices(){
-      const grid = document.getElementById("servicesGrid");
-      grid.innerHTML = "";
-
-      Object.entries(services).forEach(([key, service]) => {
-        const card = document.createElement("div");
-        card.className = "service-card";
-        card.onclick = () => openServiceMasters(key);
-
-        card.innerHTML = `
-          <div class="service-icon">${service.icon}</div>
-          <h3>${service.title}</h3>
-          <p>${service.desc}</p>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function openServiceMasters(serviceKey){
-      currentServiceKey = serviceKey;
-      const service = services[serviceKey];
-
-      document.getElementById("serviceMastersTitle").innerText = service.title;
-
-      const list = document.getElementById("serviceMastersList");
-      list.innerHTML = "";
-
-      service.masters.forEach(master => {
-        const card = document.createElement("div");
-        card.className = "master-card";
-        card.onclick = () => openServiceBooking(serviceKey, master);
-        card.innerHTML = `
-          <strong>${master.name}</strong>
-          <div>Kaina: ${master.price} €</div>
-          <div>Trukmė: ${master.duration}</div>
-        `;
-        list.appendChild(card);
-      });
-
-      openModal("serviceMastersModal");
-    }
-
-    function openServiceBooking(serviceKey, master){
-      currentServiceKey = serviceKey;
-      currentMaster = master;
-      selectedServiceTime = null;
-
-      document.getElementById("bookingServiceTitle").innerText = services[serviceKey].title;
-      document.getElementById("bookingMaster").innerText = master.name;
-      document.getElementById("bookingPrice").innerText = master.price;
-      document.getElementById("bookingDuration").innerText = master.duration;
-      document.getElementById("serviceDate").value = "";
-      document.getElementById("serviceTimesWrap").style.display = "none";
-      document.getElementById("serviceTimeButtons").innerHTML = "";
-      document.getElementById("serviceFormWrap").style.display = "none";
-      document.getElementById("serviceHint").style.display = "block";
-      document.getElementById("serviceClientName").value = "";
-      document.getElementById("serviceClientEmail").value = "";
-      document.getElementById("serviceClientNote").value = "";
-      document.getElementById("serviceSuccess").style.display = "none";
-
-      closeModal("serviceMastersModal");
-      openModal("serviceBookingModal");
-    }
-
-    function showServiceTimes(){
-      const date = document.getElementById("serviceDate").value;
-      const wrap = document.getElementById("serviceTimesWrap");
-      const btnWrap = document.getElementById("serviceTimeButtons");
-      wrap.style.display = "block";
-      btnWrap.innerHTML = "";
-      document.getElementById("serviceFormWrap").style.display = "none";
-      document.getElementById("serviceHint").style.display = "block";
-      selectedServiceTime = null;
-
-      if(!date){
-        btnWrap.innerHTML = `<div class="muted">Pirmiausia pasirink datą.</div>`;
-        return;
-      }
-
-      const times = serviceTimes[date] || ["10:00","12:00","15:00"];
-
-      times.forEach(time => {
-        const btn = document.createElement("button");
-        btn.className = "select-btn";
-        btn.innerText = time;
-        btn.onclick = () => {
-          selectedServiceTime = time;
-          [...btnWrap.querySelectorAll(".select-btn")].forEach(b => b.classList.remove("active"));
-          btn.classList.add("active");
-          document.getElementById("serviceFormWrap").style.display = "block";
-          document.getElementById("serviceHint").style.display = "none";
-        };
-        btnWrap.appendChild(btn);
-      });
-    }
-
-    function submitServiceBooking(){
-      const name = document.getElementById("serviceClientName").value.trim();
-      const email = document.getElementById("serviceClientEmail").value.trim();
-      const date = document.getElementById("serviceDate").value;
-      const success = document.getElementById("serviceSuccess");
-
-      if(!currentServiceKey || !currentMaster || !date || !selectedServiceTime || !name || !email){
-        alert("Užpildyk datą, laiką, vardą ir el. paštą.");
-        return;
-      }
-
-      success.style.display = "block";
-      success.innerText = `Rezervacija priimta: ${services[currentServiceKey].title}, meistrė ${currentMaster.name}, ${date} ${selectedServiceTime}. Kontaktas: ${name}, ${email}.`;
-    }
-
-    function backToMasters(){
-      closeModal("serviceBookingModal");
-      openModal("serviceMastersModal");
-    }
-
-    renderDressFilters();
-    renderDressCatalog();
-    renderServices();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
