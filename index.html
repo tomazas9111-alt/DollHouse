@@ -1,287 +1,35 @@
 <!DOCTYPE html>
 <html lang="lt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Doll House</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #4A0D0D;
-      color: #fff;
-      line-height: 1.7;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(74, 13, 13, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 1.5rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      color: #ffd700;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 10px rgba(255,215,0,0.4);
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 2.5rem;
-      font-size: 1rem;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #ffd700;
-    }
-
-    .hero {
-      height: 100vh;
-      min-height: 800px;
-      background: url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=90') center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      position: relative;
-      margin-top: 0;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(74,13,13,0.52);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      padding: 0 5%;
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 8vw, 7.5rem);
-      color: #ffd700;
-      margin-bottom: 1.5rem;
-      line-height: 0.95;
-      text-shadow: 0 4px 30px rgba(0,0,0,0.7);
-    }
-
-    .hero p {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      margin-bottom: 2.5rem;
-      color: #ffeeee;
-      font-weight: 300;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.9rem 2.8rem;
-      background: #ffd700;
-      color: #4A0D0D;
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 50px;
-      transition: all 0.35s;
-      font-size: 1.1rem;
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(255,215,0,0.35);
-      background: #ffea80;
-    }
-
-    .section {
-      padding: 10rem 5% 8rem;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      text-align: center;
-      color: #ffd700;
-      margin-bottom: 5rem;
-      line-height: 1.1;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 16px;
-      height: 520px;
-      background: #000;
-      cursor: pointer;
-    }
-
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.7s ease;
-      display: block; /* Užtikrina aiškų matymą */
-    }
-
-    .card:hover img {
-      transform: scale(1.12);
-    }
-
-    .card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(74,13,13,0.85) 0%, transparent 60%);
-      display: flex;
-      align-items: flex-end;
-      padding: 2.5rem;
-      color: white;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 500;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
-      transition: background 0.4s;
-    }
-
-    .card:hover .card-overlay {
-      background: linear-gradient(to top, rgba(74,13,13,0.95) 0%, transparent 60%);
-    }
-
-    .about {
-      background: rgba(74,13,13,0.3);
-      padding: 10rem 5%;
-      text-align: center;
-    }
-
-    .about h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      color: #ffd700;
-      margin-bottom: 2.5rem;
-    }
-
-    .about p {
-      max-width: 780px;
-      margin: 0 auto 2rem;
-      font-size: 1.2rem;
-      color: #eee;
-    }
-
-    footer {
-      text-align: center;
-      padding: 4rem 5% 2rem;
-      background: #2C0000;
-      font-size: 0.95rem;
-      color: #aaa;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1001;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 600px;
-      color: #000;
-      text-align: center;
-      border-radius: 10px;
-    }
-
-    .close-modal {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close-modal:hover,
-    .close-modal:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .master-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .master-item {
-      margin: 10px 0;
-      padding: 10px;
-      background: #f0f0f0;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .master-item:hover {
-      background: #e0e0e0;
-    }
-
-    .calendar {
-      margin-top: 20px;
-    }
-
-    .calendar input[type="date"] {
-      padding: 10px;
-      font-size: 16px;
-    }
-
-    .availability {
-      margin-top: 10px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 4.5rem; }
-      .hero p  { font-size: 1.4rem; }
-      .section { padding: 6rem 5% 4rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doll House PRO</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:Poppins,sans-serif;background:#4A0D0D;color:white;}
+  header{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;padding:20px 5%;background:#3a0000;z-index:1000;}
+  .logo{font-family:"Playfair Display",serif;font-size:28px;color:gold;}
+  nav a{margin-left:20px;color:white;text-decoration:none;cursor:pointer;}
+  nav a:hover{color:gold;}
+  .hero{height:100vh;background:url("https://images.unsplash.com/photo-1516975080664-ed2fc6a32937") center/cover;display:flex;align-items:center;justify-content:center;text-align:center;}
+  .hero h1{font-size:70px;color:gold;font-family:"Playfair Display";}
+  .hero p{font-size:20px;color:#fff;margin-bottom:20px;}
+  .btn{padding:12px 25px;background:gold;color:#4A0D0D;border:none;border-radius:50px;cursor:pointer;font-weight:600;}
+  .section{padding:140px 5% 60px;}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;}
+  .card{background:white;color:#4A0D0D;border-radius:10px;cursor:pointer;overflow:hidden;text-align:center;}
+  .card img{width:100%;height:250px;object-fit:cover;}
+  .card p{padding:10px;font-weight:500;}
+  .modal{position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:2000;}
+  .modal-content{background:white;color:black;padding:30px;width:90%;max-width:1000px;border-radius:10px;max-height:90vh;overflow:auto;position:relative;}
+  .close{position:absolute;top:10px;right:20px;font-size:28px;cursor:pointer;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;}
+  .dress-img{width:100%;height:300px;object-fit:cover;border-radius:10px;}
+  .master{background:#eee;padding:12px;margin:10px 0;cursor:pointer;color:black;}
+  .timeSlot{background:#ffd700;color:#4A0D0D;padding:10px;margin:5px 0;cursor:pointer;border-radius:5px;text-align:center;}
+  input, button{padding:10px;margin:5px 0;width:100%;border-radius:5px;border:1px solid #ccc;}
+  .reserveBtn{background:gold;color:#4A0D0D;border:none;font-weight:600;cursor:pointer;}
+</style>
 </head>
 <body>
 
@@ -289,244 +37,296 @@
   <div class="logo">Doll House</div>
   <nav>
     <a href="#">Pagrindinis</a>
-    <a href="javascript:void(0)" onclick="openServicesModal()">Paslaugos</a>
+    <a onclick="openModal('dressCategories')">Suknelės</a>
+    <a onclick="openModal('services')">Paslaugos</a>
     <a href="#">Kontaktai</a>
   </nav>
 </header>
 
 <section class="hero">
-  <div class="hero-content">
+  <div>
     <h1>Doll House</h1>
     <p>Grožio magija ir svajonių suknelės vienoje vietoje</p>
-    <a href="javascript:void(0)" onclick="openServicesModal()" class="btn">Užsirašyti dabar</a>
+    <button class="btn" onclick="openModal('services')">Užsirašyti dabar</button>
   </div>
 </section>
 
 <section class="section">
-  <h2 class="section-title">Mūsų paslaugos</h2>
+  <h2 class="title">Populiarios paslaugos</h2>
   <div class="cards">
-    <div class="card" onclick="openServiceModal('sukneles')">
-      <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Suknelės">
-      <div class="card-overlay">Suknelių nuoma</div>
+    <div class="card" onclick="openModal('dressCategories')">
+      <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae">
+      <p>Suknelių nuoma</p>
     </div>
-    <div class="card" onclick="openServiceModal('manikiuras')">
-      <img src="https://images.unsplash.com/photo-1522337364557-141a1284f9cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nagai">
-      <div class="card-overlay">Manikiūras / Pedikiūras</div>
+    <div class="card" onclick="openModal('manikiuras')">
+      <img src="https://images.unsplash.com/photo-1522337364557-141a1284f9cf">
+      <p>Manikiūras</p>
     </div>
-    <div class="card" onclick="openServiceModal('plaukai')">
-      <img src="https://images.unsplash.com/photo-1519415381722-250e8d8c152d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Plaukai">
-      <div class="card-overlay">Plaukų kirpimas ir šukuosenos</div>
+    <div class="card" onclick="openModal('pedikiuras')">
+      <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371">
+      <p>Pedikiūras</p>
     </div>
-    <div class="card" onclick="openServiceModal('makiazas')">
-      <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Makijažas">
-      <div class="card-overlay">Profesionalus makiažas</div>
+    <div class="card" onclick="openModal('makiazas')">
+      <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f">
+      <p>Makiažas</p>
+    </div>
+    <div class="card" onclick="openModal('plaukai')">
+      <img src="https://images.unsplash.com/photo-1600180758895-d4897c0e7b3a">
+      <p>Plaukai</p>
+    </div>
+    <div class="card" onclick="openModal('blakstienos')">
+      <img src="https://images.unsplash.com/photo-1596464716121-0d89f6f0e7c5">
+      <p>Blakstienos</p>
+    </div>
+    <div class="card" onclick="openModal('antakiai')">
+      <img src="https://images.unsplash.com/photo-1599856098220-1ee2b42d4697">
+      <p>Antakiai</p>
     </div>
   </div>
 </section>
 
-<section class="about section">
-  <h2>Apie mus</h2>
-  <p>Sveiki atvykę į Doll House – vietą, kur kiekviena mergina tampa savo pačios stebuklu.</p>
-  <p>Čia susijungia nagų magija, plaukų šedevrai, nepriekaištingas makiažas ir svajonių suknelių nuoma. Kiekvienas apsilankymas – tai mažas ritualas, kuriame atgyja tavo vidinis spindesys, o veidrodis atspindi ne tik grožį, bet ir pasitikėjimą savimi.</p>
-  <p>Leisk mums sukurti tavo magiją. 💅✨👗</p>
-</section>
+<footer style="text-align:center;padding:30px;background:#2C0000;margin-top:50px;">Doll House © 2026 – Visos teisės saugomos</footer>
 
-<footer>
-  <p>Doll House © 2026 – Visos teisės saugomos</p>
-</footer>
-
-<!-- Bendras paslaugų modalas -->
-<div id="servicesModal" class="modal">
+<!-- Suknelių kategorijos modalas -->
+<div id="dressCategories" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeServicesModal()">×</span>
-    <h2>Mūsų paslaugos</h2>
-    <ul style="list-style:none; font-size:1.3rem; line-height:2.6; text-align:center; margin-top:1.5rem;">
-      <li onclick="openServiceModal('sukneles')">✨ Suknelių nuoma</li>
-      <li onclick="openServiceModal('manikiuras')">💅 Manikiūras</li>
-      <li onclick="openServiceModal('pedikiuras')">🦶 Pedikiūras</li>
-      <li onclick="openServiceModal('plaukai')">✂️ Plaukų kirpimas</li>
-      <li onclick="openServiceModal('makiazas')">💄 Make-up'as</li>
-      <li onclick="openServiceModal('depiliacija')">🪒 Depiliacija</li>
-    </ul>
-  </div>
-</div>
-
-<!-- Individualūs paslaugų modalai -->
-<div id="suknelesModal" class="modal">
-  <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('suknelesModal')">×</span>
-    <h2>Suknelių nuoma</h2>
-    <p>Pasirinkite meistrą:</p>
-    <ul class="master-list">
-      <li class="master-item" onclick="showCalendar('sukneles', 'Meistras1', 45)">Meistras1 - 45€</li>
-      <li class="master-item" onclick="showCalendar('sukneles', 'Meistras2', 50)">Meistras2 - 50€</li>
-      <li class="master-item" onclick="showCalendar('sukneles', 'Meistras3', 55)">Meistras3 - 55€</li>
-    </ul>
-    <div id="suknelesCalendar" class="calendar" style="display:none;">
-      <h3>Kalendorius meistrui: <span id="suknelesMasterName"></span></h3>
-      <input type="date" id="suknelesDate" onchange="checkAvailability('sukneles')">
-      <div id="suknelesAvailability" class="availability"></div>
+    <span class="close" onclick="closeModal('dressCategories')">×</span>
+    <h2>Kategorijos</h2>
+    <div class="grid">
+      <div class="card" onclick="openDressCategory('progines')"><img src="https://assets.vogue.com/photos/627bf2e1468dc56fbb4b2aa1/4:3/w_2560%2Cc_limit/MGMMEWED-0432.jpg"><p>Proginės</p></div>
+      <div class="card" onclick="openDressCategory('isleistuviu')"><img src="https://www.amarra.com/cdn/shop/articles/Unique_Prom_Dress-965447.jpg"><p>Išleistuvių</p></div>
+      <div class="card" onclick="openDressCategory('vakarines')"><img src="https://assets.vogue.com/photos/67a37d2a21246cb1c4485667/master/w_1600%2Cc_limit/VO0524_CoverStory_06.jpg"><p>Vakarinės</p></div>
+      <div class="card" onclick="openDressCategory('kokteilines')"><img src="https://storage.googleapis.com/windsor-cms/media/2023/09/1ac6d7e2-what-is-a-cocktail-dress-examples-1.jpg"><p>Kokteilinės</p></div>
+      <div class="card" onclick="openDressCategory('vestuvines')"><img src="https://media.cntraveler.com/photos/682374a8e0cc723c0497c381/16:9/w_2560%2Cc_limit/ECOM-LEDE_Beach%2520Wedding%2520Guest%2520Dresses.jpg"><p>Vestuvinės</p></div>
     </div>
   </div>
 </div>
 
-<div id="manikiurasModal" class="modal">
+<!-- Suknelių sąrašas modalas -->
+<div id="dressListModal" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('manikiurasModal')">×</span>
+    <span class="close" onclick="closeModal('dressListModal')">×</span>
+    <h2 id="dressCategoryTitle"></h2>
+    <div id="dressGrid" class="grid"></div>
+  </div>
+</div>
+
+<!-- Suknelės detalės modalas -->
+<div id="dressModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('dressModal')">×</span>
+    <h2 id="dressName"></h2>
+    <img id="dressImg" class="dress-img">
+    <p>Kaina: <span id="dressPrice"></span>€</p>
+    <p>Dydžiai: <span id="dressSizes"></span></p>
+    <p>Pasirinkite datą:</p>
+    <input type="date" id="dressDate" onchange="checkDressAvailability()">
+    <p id="dressAvailability"></p>
+  </div>
+</div>
+
+<!-- Paslaugos modalas -->
+<div id="services" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('services')">×</span>
+    <h2>Grožio paslaugos</h2>
+    <div class="service" onclick="openModal('manikiuras')">💅 Manikiūras</div>
+    <div class="service" onclick="openModal('pedikiuras')">🦶 Pedikiūras</div>
+    <div class="service" onclick="openModal('makiazas')">💄 Makiažas</div>
+    <div class="service" onclick="openModal('plaukai')">✂️ Plaukai</div>
+    <div class="service" onclick="openModal('blakstienos')">👁 Blakstienos</div>
+    <div class="service" onclick="openModal('antakiai')">✨ Antakiai</div>
+  </div>
+</div>
+
+<!-- Grožio procedūrų modalai -->
+<div id="manikiuras" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('manikiuras')">×</span>
     <h2>Manikiūras</h2>
-    <p>Pasirinkite meistrą:</p>
-    <ul class="master-list">
-      <li class="master-item" onclick="showCalendar('manikiuras', 'Meistras1', 15)">Meistras1 - 15€</li>
-      <li class="master-item" onclick="showCalendar('manikiuras', 'Meistras2', 20)">Meistras2 - 20€</li>
-      <li class="master-item" onclick="showCalendar('manikiuras', 'Meistras3', 25)">Meistras3 - 25€</li>
-    </ul>
-    <div id="manikiurasCalendar" class="calendar" style="display:none;">
-      <h3>Kalendorius meistrui: <span id="manikiurasMasterName"></span></h3>
-      <input type="date" id="manikiurasDate" onchange="checkAvailability('manikiuras')">
-      <div id="manikiurasAvailability" class="availability"></div>
+    <div class="master" onclick="openServiceMaster('Aistė',35,'1h30','manikiuras')">Aistė – 35€ (1h30)</div>
+    <div class="master" onclick="openServiceMaster('Laura',40,'1h45','manikiuras')">Laura – 40€ (1h45)</div>
+    <div class="master" onclick="openServiceMaster('Milda',45,'2h','manikiuras')">Milda – 45€ (2h)</div>
+    <div id="manikiurasCalendar"></div>
+    <div id="manikiurasRegistration" style="display:none">
+      <input type="text" id="manikiurasName" placeholder="Vardas">
+      <input type="email" id="manikiurasEmail" placeholder="El. paštas">
+      <button class="reserveBtn" onclick="completeServiceBooking('manikiuras')">Rezervuoti</button>
     </div>
   </div>
 </div>
 
-<div id="pedikiurasModal" class="modal">
+<!-- Kitos procedūros: pedikiuras, makiazas, plaukai, blakstienos, antakiai -->
+<div id="pedikiuras" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('pedikiurasModal')">×</span>
+    <span class="close" onclick="closeModal('pedikiuras')">×</span>
     <h2>Pedikiūras</h2>
-    <p>Pasirinkite meistrą:</p>
-    <ul class="master-list">
-      <li class="master-item" onclick="showCalendar('pedikiuras', 'Meistras1', 25)">Meistras1 - 25€</li>
-      <li class="master-item" onclick="showCalendar('pedikiuras', 'Meistras2', 30)">Meistras2 - 30€</li>
-      <li class="master-item" onclick="showCalendar('pedikiuras', 'Meistras3', 35)">Meistras3 - 35€</li>
-    </ul>
-    <div id="pedikiurasCalendar" class="calendar" style="display:none;">
-      <h3>Kalendorius meistrui: <span id="pedikiurasMasterName"></span></h3>
-      <input type="date" id="pedikiurasDate" onchange="checkAvailability('pedikiuras')">
-      <div id="pedikiurasAvailability" class="availability"></div>
+    <div class="master" onclick="openServiceMaster('Simona',40,'1h30','pedikiuras')">Simona – 40€ (1h30)</div>
+    <div class="master" onclick="openServiceMaster('Gabija',45,'2h','pedikiuras')">Gabija – 45€ (2h)</div>
+    <div id="pedikiurasCalendar"></div>
+    <div id="pedikiurasRegistration" style="display:none">
+      <input type="text" id="pedikiurasName" placeholder="Vardas">
+      <input type="email" id="pedikiurasEmail" placeholder="El. paštas">
+      <button class="reserveBtn" onclick="completeServiceBooking('pedikiuras')">Rezervuoti</button>
     </div>
   </div>
 </div>
 
-<div id="plaukaiModal" class="modal">
+<div id="makiazas" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('plaukaiModal')">×</span>
-    <h2>Plaukų kirpimas</h2>
-    <p>Pasirinkite meistrą:</p>
-    <ul class="master-list">
-      <li class="master-item" onclick="showCalendar('plaukai', 'Meistras1', 15)">Meistras1 - 15€</li>
-      <li class="master-item" onclick="showCalendar('plaukai', 'Meistras2', 20)">Meistras2 - 20€</li>
-      <li class="master-item" onclick="showCalendar('plaukai', 'Meistras3', 25)">Meistras3 - 25€</li>
-    </ul>
-    <div id="plaukaiCalendar" class="calendar" style="display:none;">
-      <h3>Kalendorius meistrui: <span id="plaukaiMasterName"></span></h3>
-      <input type="date" id="plaukaiDate" onchange="checkAvailability('plaukai')">
-      <div id="plaukaiAvailability" class="availability"></div>
+    <span class="close" onclick="closeModal('makiazas')">×</span>
+    <h2>Makiažas</h2>
+    <div class="master" onclick="openServiceMaster('Eglė',50,'1h','makiazas')">Eglė – 50€ (1h)</div>
+    <div class="master" onclick="openServiceMaster('Monika',55,'1h15','makiazas')">Monika – 55€ (1h15)</div>
+    <div id="makiazasCalendar"></div>
+    <div id="makiazasRegistration" style="display:none">
+      <input type="text" id="makiazasName" placeholder="Vardas">
+      <input type="email" id="makiazasEmail" placeholder="El. paštas">
+      <button class="reserveBtn" onclick="completeServiceBooking('makiazas')">Rezervuoti</button>
     </div>
   </div>
 </div>
 
-<div id="makiazasModal" class="modal">
+<div id="plaukai" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('makiazasModal')">×</span>
-    <h2>Make-up'as</h2>
-    <p>Pasirinkite meistrą:</p>
-    <ul class="master-list">
-      <li class="master-item" onclick="showCalendar('makiazas', 'Meistras1', 35)">Meistras1 - 35€</li>
-      <li class="master-item" onclick="showCalendar('makiazas', 'Meistras2', 40)">Meistras2 - 40€</li>
-      <li class="master-item" onclick="showCalendar('makiazas', 'Meistras3', 45)">Meistras3 - 45€</li>
-    </ul>
-    <div id="makiazasCalendar" class="calendar" style="display:none;">
-      <h3>Kalendorius meistrui: <span id="makiazasMasterName"></span></h3>
-      <input type="date" id="makiazasDate" onchange="checkAvailability('makiazas')">
-      <div id="makiazasAvailability" class="availability"></div>
+    <span class="close" onclick="closeModal('plaukai')">×</span>
+    <h2>Plaukų procedūros</h2>
+    <div class="master" onclick="openServiceMaster('Rūta',60,'1h30','plaukai')">Rūta – 60€ (1h30)</div>
+    <div class="master" onclick="openServiceMaster('Agnė',70,'2h','plaukai')">Agnė – 70€ (2h)</div>
+    <div id="plaukaiCalendar"></div>
+    <div id="plaukaiRegistration" style="display:none">
+      <input type="text" id="plaukaiName" placeholder="Vardas">
+      <input type="email" id="plaukaiEmail" placeholder="El. paštas">
+      <button class="reserveBtn" onclick="completeServiceBooking('plaukai')">Rezervuoti</button>
     </div>
   </div>
 </div>
 
-<div id="depiliacijaModal" class="modal">
+<div id="blakstienos" class="modal">
   <div class="modal-content">
-    <span class="close-modal" onclick="closeModal('depiliacijaModal')">×</span>
-    <h2>Depiliacija</h2>
-    <p>Pasirinkite meistrą:</p>
-    <ul class="master-list">
-      <li class="master-item" onclick="showCalendar('depiliacija', 'Meistras1', 15)">Meistras1 - 15€</li>
-      <li class="master-item" onclick="showCalendar('depiliacija', 'Meistras2', 20)">Meistras2 - 20€</li>
-      <li class="master-item" onclick="showCalendar('depiliacija', 'Meistras3', 25)">Meistras3 - 25€</li>
-    </ul>
-    <div id="depiliacijaCalendar" class="calendar" style="display:none;">
-      <h3>Kalendorius meistrui: <span id="depiliacijaMasterName"></span></h3>
-      <input type="date" id="depiliacijaDate" onchange="checkAvailability('depiliacija')">
-      <div id="depiliacijaAvailability" class="availability"></div>
+    <span class="close" onclick="closeModal('blakstienos')">×</span>
+    <h2>Blakstienos</h2>
+    <div class="master" onclick="openServiceMaster('Diana',45,'1h','blakstienos')">Diana – 45€ (1h)</div>
+    <div class="master" onclick="openServiceMaster('Laura',50,'1h15','blakstienos')">Laura – 50€ (1h15)</div>
+    <div id="blakstienosCalendar"></div>
+    <div id="blakstienosRegistration" style="display:none">
+      <input type="text" id="blakstienosName" placeholder="Vardas">
+      <input type="email" id="blakstienosEmail" placeholder="El. paštas">
+      <button class="reserveBtn" onclick="completeServiceBooking('blakstienos')">Rezervuoti</button>
+    </div>
+  </div>
+</div>
+
+<div id="antakiai" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('antakiai')">×</span>
+    <h2>Antakiai</h2>
+    <div class="master" onclick="openServiceMaster('Vaida',20,'30min','antakiai')">Vaida – 20€ (30min)</div>
+    <div class="master" onclick="openServiceMaster('Aistė',25,'45min','antakiai')">Aistė – 25€ (45min)</div>
+    <div id="antakiaiCalendar"></div>
+    <div id="antakiaiRegistration" style="display:none">
+      <input type="text" id="antakiaiName" placeholder="Vardas">
+      <input type="email" id="antakiaiEmail" placeholder="El. paštas">
+      <button class="reserveBtn" onclick="completeServiceBooking('antakiai')">Rezervuoti</button>
     </div>
   </div>
 </div>
 
 <script>
-// Bendras paslaugų modalas
-function openServicesModal() {
-  document.getElementById("servicesModal").style.display = "flex";
-  document.body.style.overflow = "hidden";
-}
-
-function closeServicesModal() {
-  document.getElementById("servicesModal").style.display = "none";
-  document.body.style.overflow = "auto";
-}
-
-// Individualūs modalai
-function openServiceModal(service) {
-  let modalId;
-  switch(service) {
-    case 'sukneles': modalId = 'suknelesModal'; break;
-    case 'manikiuras': modalId = 'manikiurasModal'; break;
-    case 'pedikiuras': modalId = 'pedikiurasModal'; break;
-    case 'plaukai': modalId = 'plaukaiModal'; break;
-    case 'makiazas': modalId = 'makiazasModal'; break;
-    case 'depiliacija': modalId = 'depiliacijaModal'; break;
-    default: return;
-  }
-  document.getElementById(modalId).style.display = "flex";
-  document.body.style.overflow = "hidden";
-}
-
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = "none";
-  document.body.style.overflow = "auto";
-}
-
-// Kalendoriaus funkcija
-const availabilityData = {
-  // Fiktyvūs duomenys: data -> [laisvi laikai]
-  '2026-03-15': ['10:00', '11:00', '14:00'],
-  '2026-03-16': ['09:00', '12:00'],
-  '2026-03-17': [] // Užimta
+const dresses={
+  progines:[],
+  isleistuviu:[],
+  vakarines:[],
+  kokteilines:[],
+  vestuvines:[]
 };
 
-function showCalendar(service, master, price) {
-  let calendarId = service + 'Calendar';
-  let masterNameId = service + 'MasterName';
-  document.getElementById(calendarId).style.display = 'block';
-  document.getElementById(masterNameId).innerText = master + ' (' + price + '€)';
+// Suknelių generavimas po 10 kiekvienoje kategorijoje
+for(let cat in dresses){
+  for(let i=1;i<=10;i++){
+    dresses[cat].push({
+      name: `${cat.charAt(0).toUpperCase()+cat.slice(1)} ${i}`,
+      img:`https://source.unsplash.com/400x400/?dress,${i}`,
+      price:100+i*10,
+      sizes:['XS','S','M','L','XL']
+    });
+  }
 }
 
-function checkAvailability(service) {
-  let dateId = service + 'Date';
-  let availabilityId = service + 'Availability';
-  let selectedDate = document.getElementById(dateId).value;
-  let availTimes = availabilityData[selectedDate] || [];
-  let message;
-  if (availTimes.length > 0) {
-    message = 'Laisvi laikai: ' + availTimes.join(', ');
-  } else {
-    message = 'Ši diena užimta.';
-  }
-  document.getElementById(availabilityId).innerText = message;
+let currentDressCategory=null;
+let currentDress=null;
+
+function openModal(id){document.getElementById(id).style.display='flex';}
+function closeModal(id){document.getElementById(id).style.display='none';}
+
+function openDressCategory(category){
+  currentDressCategory=category;
+  document.getElementById('dressCategoryTitle').innerText=category.charAt(0).toUpperCase()+category.slice(1);
+  const grid=document.getElementById('dressGrid');
+  grid.innerHTML='';
+  dresses[category].forEach(d=>{
+    const div=document.createElement('div');
+    div.className='card';
+    div.innerHTML=`<img src="${d.img}"><p>${d.name}</p><p>${d.price}€</p>`;
+    div.onclick=()=>openDressDetails(d);
+    grid.appendChild(div);
+  });
+  openModal('dressListModal');
 }
 
-window.onclick = function(e) {
-  if (e.target.classList.contains('modal')) {
-    e.target.style.display = "none";
-    document.body.style.overflow = "auto";
-  }
+function openDressDetails(dress){
+  currentDress=dress;
+  document.getElementById('dressName').innerText=dress.name;
+  document.getElementById('dressImg').src=dress.img;
+  document.getElementById('dressPrice').innerText=dress.price;
+  document.getElementById('dressSizes').innerText=dress.sizes.join(', ');
+  document.getElementById('dressAvailability').innerText='';
+  document.getElementById('dressDate').value='';
+  openModal('dressModal');
+}
+
+const dressAvailability={
+  '2026-03-15':['XS','S','M'],
+  '2026-03-16':['S','M','L'],
+  '2026-03-17':['M','L','XL']
+};
+
+function checkDressAvailability(){
+  const date=document.getElementById('dressDate').value;
+  const avail=dressAvailability[date]||[];
+  document.getElementById('dressAvailability').innerText=avail.length?`Laisvi dydžiai: ${avail.join(', ')}`:'Nėra laisvų dydžių';
+}
+
+// Grožio paslaugų kalendorius ir rezervacija
+const serviceAvailability={'manikiuras':['10:00','12:00','14:00'],'pedikiuras':['11:00','13:00','15:00'],'makiazas':['10:30','12:30','14:30'],'plaukai':['11:00','13:00','15:30'],'blakstienos':['10:00','12:00','14:00'],'antakiai':['11:00','13:00','15:00']};
+
+function openServiceMaster(name,price,duration,serviceId){
+  const cal=document.getElementById(serviceId+'Calendar');
+  cal.innerHTML=`<p>${name} – ${price}€ (${duration})</p><p>Pasirinkite datą:</p><input type="date" id="${serviceId}Date" onchange="showServiceTimeSlots('${serviceId}')">`;
+  document.getElementById(serviceId+'Registration').style.display='none';
+}
+
+function showServiceTimeSlots(serviceId){
+  const date=document.getElementById(serviceId+'Date').value;
+  const cal=document.getElementById(serviceId+'Calendar');
+  const times=serviceAvailability[serviceId]||[];
+  cal.innerHTML+=`<p>Galimi laikai:</p>`;
+  times.forEach(t=>{
+    const btn=document.createElement('div');
+    btn.className='timeSlot';
+    btn.innerText=t;
+    btn.onclick=()=>{document.getElementById(serviceId+'Registration').style.display='block';};
+    cal.appendChild(btn);
+  });
+}
+
+function completeServiceBooking(serviceId){
+  const name=document.getElementById(serviceId+'Name').value;
+  const email=document.getElementById(serviceId+'Email').value;
+  if(name && email){
+    alert(`Rezervacija atlikta! ${name}, patvirtinimas išsiųstas į ${email}`);
+    closeModal(serviceId);
+  } else alert('Užpildykite vardą ir el.paštą');
 }
 </script>
 
